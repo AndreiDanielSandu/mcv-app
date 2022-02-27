@@ -1,0 +1,46 @@
+﻿@model MilestoneProject.Models.Sorting
+@{
+    ViewBag.Title = "ReadData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<h2>@ViewBag.Title</h2>
+<body>
+    <div>&nbsp;</div>
+    <table class="table table-bordered table-responsive table-hover">
+        @Html.Partial("_HeaderSharedView")
+        @foreach (var data in ViewBag.Data)
+        {
+            <tr>
+                <td>@data.CompanyName</td>
+                <td>@data.YearsInBusiness</td>
+                <td>@data.ConctactName</td>
+                <td>@data.ContactPhoneNo</td>
+                <td>@data.ContactEmail</td>
+            </tr>
+        }
+    </table>
+    <div>
+        @using (Html.BeginForm("ReadData", "SharedData", FormMethod.Post))
+        {
+            @Html.DropDownList("Id", Model.SortingSelectList, "Select Sorting")
+            <input type="submit" id="btnSubmit" value="Sort" />
+        }
+    </div>
+    <br />
+    <div>
+        @using (Html.BeginForm("Export", "SharedData", FormMethod.Post))
+        {
+            @Html.DropDownList("Id", Model.SortingSelectList, "Select Sorting")
+            <input type="submit" id="btnSubmit" value="Export" />
+        }
+    </div>
+   </body>
+</html>
